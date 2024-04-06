@@ -1,0 +1,89 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="icon" type="image/png" href="{% static 'img/icon.jpeg' %}"> <!-- Reemplaza 'favicon.png' con la ruta de tu favicon -->
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Archivo:wght@500&family=Inter:wght@400;600;800&family=Silkscreen:wght@400;700&display=swap');
+        
+        @font-face {
+            font-family: 'Silkscreen';
+            font-style: normal;
+            font-weight: 400;
+            src: url('https://fonts.gstatic.com/s/silkscreen/v9/buw-ANDf3bD7se2TKdG6N8LFug.ttf') format('truetype');
+        }
+        body {
+            font-family: 'Silkscreen', sans-serif; /* Utiliza la fuente Silkscreen para todo el cuerpo del documento */
+
+            background-image: url("{% static 'img/fondo1.png' %}");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .card {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="text-center mb-4">Login</h3>
+                    <form id="login-form" method="post">
+                        {% csrf_token %}
+                        <!-- Aquí van los campos de login -->
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input type="text" id="username" name="username" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" id="password" name="password" class="form-control" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Login</button>
+                    </form>
+                    <div class="text-center mt-3">
+                        <a href="/register/" class="btn btn-secondary btn-block">Register</a>
+                    </div>
+                                        <!-- Botón para recuperación de contraseña -->
+                    <div class="text-center mt-3">
+                        <a href="{% url 'password_reset' %}" class="btn btn-info btn-block">¿Olvidaste tu contraseña?</a>
+                    </div>
+                    <!-- Mensajes de error -->
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS and jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+
+</body>
+</html>

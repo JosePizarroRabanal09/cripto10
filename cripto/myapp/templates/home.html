@@ -1,0 +1,373 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="icon" type="image/png" href="{% static 'img/icon.jpeg' %}"> <!-- Reemplaza 'favicon.png' con la ruta de tu favicon -->
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Archivo:wght@500&family=Inter:wght@400;600;800&family=Silkscreen:wght@400;700&display=swap');
+        
+        @font-face {
+            font-family: 'Silkscreen';
+            font-style: normal;
+            font-weight: 400;
+            src: url('https://fonts.gstatic.com/s/silkscreen/v9/buw-ANDf3bD7se2TKdG6N8LFug.ttf') format('truetype');
+        }
+        body {
+            font-family: 'Silkscreen'; /* Utiliza la fuente Silkscreen para todo el cuerpo del documento */
+
+            background-image: url("{% static 'img/fondo1.png' %}");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            min-height: 100vh;
+            padding-top: 60px; /* Para dejar espacio para el navbar */
+        }
+        .title-background {
+            margin-bottom: 20px;
+        }
+        .navbar-links {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .navbar-links a {
+            margin: 0 10px;
+            text-decoration: none;
+            color: black;
+            padding: 10px 20px; /* Espaciado interno */
+            border-radius: 5px; /* Bordes redondeados */
+            transition: background-color 0.3s; /* Transición suave */
+        }
+
+
+        .card {
+            margin-bottom: 20px;
+            border-radius: 20px; /* Bordes ovalados */
+            border: 1px solid rgba(0, 0, 0, 0.125); /* Borde sombreado */
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15); /* Sombra */
+        }
+
+        .card img {
+            height: 200px; /* Altura de la imagen del guerrero */
+            object-fit: cover;
+            border-top-left-radius: 20px; /* Borde superior izquierdo ovalado */
+            border-top-right-radius: 20px; /* Borde superior derecho ovalado */
+        }
+        .image-container img {
+            max-width: 100%; /* Ajusta el ancho máximo de la imagen al 100% del contenedor */
+            height: auto; /* Permite que la altura se ajuste proporcionalmente al ancho */
+        }
+        
+        .store-section {
+            border: 1px solid #ced4da;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+            background-color: #f8f9fa; /* Fondo del contenedor */
+        }
+
+        .footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #343a40;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        .title-background {
+            background-color: #343a40; /* Fondo del título */
+            color: white; /* Color del texto del título */
+            padding: 10px 20px; /* Espaciado del título */
+            border-top-left-radius: 20px; /* Borde superior izquierdo ovalado */
+            border-top-right-radius: 20px; /* Borde superior derecho ovalado */
+        }
+        .gold-box {
+            margin-top: 20px;
+            display: inline-block;
+            padding: 5px 10px;
+            background-color: #ffc107; /* Color de fondo de la caja */
+            border-radius: 5px; /* Bordes redondeados */
+            cursor: default; /* Evita que sea clickeable */
+        }
+    
+        .gold-box img {
+            vertical-align: middle; /* Alinea verticalmente el icono con el texto */
+        }
+
+        .card {
+            width: 250px;
+            border-radius: 10px;
+        }
+        
+        .card-img-top {
+            border-top-right-radius: 10px;
+            border-top-left-radius: 10px;
+        }
+        
+        span.text-muted {
+            font-size: 12px;
+        }
+        
+        small.text-muted {
+            font-size: 8px;
+        }
+        
+        h5.mb-0 {
+            font-size: 1rem;
+        }
+        
+        small.ghj {
+            font-size: 9px;
+        }
+        
+        .mid {
+            background: #ECEDF1;
+        }
+        
+        h6.ml-1 {
+            font-size: 13px;
+        }
+        
+        small.key {
+            text-decoration: underline;
+            font-size: 9px;
+            cursor: pointer;
+        }
+        
+        .btn-danger {
+            color: #FFCBD2;
+        }
+        
+        .btn-danger:focus {
+            box-shadow: none;
+        }
+        
+        small.justify-content-center {
+            font-size: 9px;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+        
+        @media screen and (max-width:600px) {
+            .col-sm-4 {
+                margin-bottom: 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <a href="https://bylotuz.org/store/">
+                    <img src="{% static 'img/buy.png' %}" alt="buy" style="height: 130px; margin-top: -58px; margin-left: 24px;">
+                </a>
+            </div>
+            <div class="col">
+                <a href="/inventario/">
+                    <img src="{% static 'img/inventario.png' %}" alt="Inventario" style="height: 70px; margin-left: -32px;">
+                </a>
+            </div>
+            <div class="col">
+                <a href="/perfil">
+                    <img src="{% static 'img/perfil.png' %}" alt="Perfil" style="height: 70px; margin-left: -28px;">
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <a href="/home/">
+                    <img src="{% static 'img/shop.png' %}" alt="Shop" style="height: 70px; margin-left: -35px;">
+                </a>
+            </div>
+            <div class="col">
+                <a href="https://bylotuz.gitbook.io/medieval">
+                    <img src="{% static 'img/wiki.png' %}" alt="wiki" style="height: 70px;">
+                </a>
+            </div>
+            <div class="col">
+                <a href="/logout/">
+                    <img src="{% static 'img/salir.png' %}" alt="Salir" style="height: 70px;">
+                </a>
+            </div>
+            <div class="col">
+                <a href="/ranking/">
+                    <img src="{% static 'img/ranking.png' %}" alt="Salir" style="height: 70px;">
+                </a>
+            </div>
+        </div>
+        <div class="row" style="margin-top: 10px;">
+            <div class="col text-center">
+                <div class="gold-box">
+                    <img src="{% static 'img/gold-icon.png' %}" alt="Gold Icon" style="height: 20px; margin-right: 5px; ">
+                    <span><b>{{ user_info.gold }}</b> Gold</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+
+    <div class="container store-section mb-15"> <!-- Agrega la clase "mb-4" para agregar margen inferior -->
+        {% if messages %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {% for message in messages %}
+            <strong>{{ message }}</strong>
+            {% endfor %}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        {% endif %}
+        <div class="title-background">
+            <h2 class="text-center mb-4"><b>Shop</b></h2>
+        </div>
+    <!-- Iterar sobre los cofres -->
+<div class="container">
+    <div class="row mt-5">
+        {% for cofre in cofres %}
+        <div class="col-sm-4">
+            <div class="card mb-4"> <!-- Agrega el margen inferior -->
+                <img src="{{ cofre.imagen.url }}" class="card-img-top" width="100%">
+                <div class="card-body pt-0 px-0">
+                    <div class="d-flex flex-row justify-content-between mb-0 px-3">
+                        <small class="text-muted mt-1">{{ cofre.nombre }}</small>
+                    </div>
+                    <hr class="mt-2 mx-3">
+                    <div class="d-flex flex-row justify-content-between px-3 pb-4">
+                        <div class="d-flex flex-column"><span class="text-muted">Price</span><small class="text-muted"></small></div>
+                        <div class="d-flex flex-column"><h5 class="mb-0">{% if cofre.precio %}&dollar;{{ cofre.precio }}{% else %}Gratis{% endif %}</h5></div>
+                    </div>
+                    <div class="mx-3 mt-3 mb-2"><button type="button" class="btn btn-danger btn-block"
+                         onclick="confirmTowerPurchaseCofre('{{ cofre.id }}', '{{ cofre.nombre }}')"><small>PURCHASE</small></button></div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+        <!-- Información de la torre -->
+<!-- Información de la torre -->
+<div class="row justify-content-center mb-4">
+    {% for tower_info in tower %}
+    <div class="col-md-3 d-flex">
+        <div class="card shadow" style="background-color: #212529; color: #ffffff; flex: 1;"> <!-- Cambiar el fondo y el color del texto -->
+            <!-- Aquí puedes mostrar la información de cada torre -->
+            <div class="card-body d-flex flex-column">
+                <h5 class="card-title text-center">{{ tower_info.name }}</h5>
+                <p class="card-text flex-grow-1">Building Price: ${{ tower_info.price }}</p>
+                <p class="card-text flex-grow-1">Efect: ${{ tower_info.efecto }}</p>
+                <p class="card-text flex-grow-1">{{ tower_info.observacion }}</p>
+                <!-- Puedes mostrar la imagen de la torre si es necesario -->
+                {% if tower_info.imagen %}
+                <div class="d-flex justify-content-center align-items-center flex-grow-1" style="height: 150px;">
+                    <img src="{{ tower_info.imagen.url }}" class="card-img-top img-fluid" style="max-height: 150px; width: auto;" alt="Imagen de la torre">
+                </div>
+                {% endif %}
+                <div class="card-footer" style="background-color: #343a40;"> <!-- Cambiar el color del footer -->
+                    <button class="btn btn-primary btn-block" style="background-color: #ffc107; border-color: #ffc107;" onclick="confirmTowerPurchase('{{ tower_info.tipo }}', '{{ tower_info.name }}')">Purchase</button> <!-- Cambiar el color del botón -->
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+
+
+    
+<div class="container">
+    <div class="row mt-5">
+        {% for guerrero, nombre_archivo in guerreros_con_archivo %}
+        {% if guerrero.mostrar %}
+        <div class="col-sm-4">
+            <div class="card mb-4 h-100"> <!-- Agrega el margen inferior -->
+                <div class="image-container"> <!-- Agrega una clase al div contenedor de la imagen -->
+                    <img src="{{guerrero.imagen.url}}" class="card-img-top" width="100%">
+                </div>                <div class="card-body pt-0 px-0">
+                    <div class="d-flex flex-row justify-content-between mb-0 px-3">
+                        <small class="text-muted mt-1">Rarity</small>
+                        <h6 style="{% if guerrero.rareza == 'Common' %}color: #808080;{% elif guerrero.rareza == 'Uncommon' %}color: #00FF00;{% elif guerrero.rareza == 'Rare' %}color: #0000FF;{% elif guerrero.rareza == 'Epic' %}color: #800080;{% elif guerrero.rareza == 'Legendary' %}color: #FFD700;{% endif %}"><b>{{ guerrero.rareza }}</b></h6>
+                    </div>
+                    <hr class="mt-2 mx-3">
+                    <div class="d-flex flex-row justify-content-between px-3 pb-4">
+                        <div class="d-flex flex-column"><span class="text-muted">Production</span><small class="text-muted">Min/Max</small></div>
+                        <div class="d-flex flex-column"><h5 class="mb-0">{{ guerrero.produccion_min }} - {{ guerrero.produccion_max }}</h5></div>
+                    </div>
+                    <div class="d-flex flex-row justify-content-between p-3 mid">
+                        <div class="d-flex flex-column"><small class="text-muted mb-1">Price</small><div class="d-flex flex-row"><h6 class="mb-0" style="{% if guerrero.rareza == 'Common' %}color: #808080;{% elif guerrero.rareza == 'Uncommon' %}color: #00FF00;{% elif guerrero.rareza == 'Rare' %}color: #0000FF;{% elif guerrero.rareza == 'Epic' %}color: #800080;{% elif guerrero.rareza == 'Legendary' %}color: #FFD700;{% endif %}">&dollar;{{ guerrero.precio }}</h6></div></div>
+                        <div class="d-flex flex-column"><small class="text-muted mb-2">Cooldown</small><div class="d-flex flex-row"><h6 class="mb-0">{{ guerrero.cooldown }}</h6></div></div>
+                    </div>
+                    <div class="mx-3 mt-3 mb-2"><button type="button" class="btn btn-danger btn-block"
+                         style="{% if guerrero.rareza == 'Common' %}background-color: #808080;
+                         {% elif guerrero.rareza == 'Uncommon' %}background-color: #00FF00;
+                         {% elif guerrero.rareza == 'Rare' %}background-color: #0000FF;
+                         {% elif guerrero.rareza == 'Epic' %}background-color: #800080;{% elif guerrero.rareza == 'Legendary' %}
+                         background-color: #FFD700;{% endif %}"  
+                         onclick="confirmTowerPurchase('{{ guerrero.id }}', '{{ compra.guerrero.nombre }}')"><small>PURCHASE</small></button></div>
+                    <!-- <small class="d-flex justify-content-center text-muted">*Legal Disclaimer</small>   -->
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+
+
+</div>
+
+
+
+    
+    
+
+<script>
+    // Corregido para aceptar el ID del guerrero como parámetro
+    function confirmPurchase(guerreroId, guerreroNombre) {
+        var confirmation = window.confirm('Are you sure to buy ' + guerreroNombre + '?');
+        if (confirmation) {
+            // Corregido para redireccionar a /compra/<id>
+            window.location.href = '/compra/' + guerreroId + '/';
+        } else {
+            // Si el usuario cancela la compra, no se hace nada
+        }
+    }
+
+
+    function confirmTowerPurchase(towerType, towerName) {
+        var confirmation = window.confirm('Are you sure to buy ' + towerName + '?');
+        if (confirmation) {
+            // Envía la solicitud de compra al servidor
+            window.location.href = '/compra/' + towerType + '/';
+        } else {
+            // Si el usuario cancela la compra, no se hace nada
+        }
+    }
+    function confirmTowerPurchaseCofre(cofreid, cofreName) {
+        var confirmation = window.confirm('Are you sure to buy' + cofreName + '?');
+        if (confirmation) {
+            // Envía la solicitud de compra al servidor
+            window.location.href = '/compracofre/' + cofreid + '/';
+        } else {
+            // Si el usuario cancela la compra, no se hace nada
+        }
+    }
+</script>
+<!-- Bootstrap JS and jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

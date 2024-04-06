@@ -1,0 +1,215 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil</title>
+    <!-- Bootstrap CSS -->
+    <link rel="icon" type="image/png" href="{% static 'img/icon.jpeg' %}"> <!-- Reemplaza 'favicon.png' con la ruta de tu favicon -->
+
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Archivo:wght@500&family=Inter:wght@400;600;800&family=Silkscreen:wght@400;700&display=swap');
+        
+        @font-face {
+            font-family: 'Silkscreen';
+            font-style: normal;
+            font-weight: 400;
+            src: url('https://fonts.gstatic.com/s/silkscreen/v9/buw-ANDf3bD7se2TKdG6N8LFug.ttf') format('truetype');
+        }
+          
+
+        body {
+            font-family: 'Silkscreen', sans-serif; /* Utiliza la fuente Silkscreen para todo el cuerpo del documento */
+
+            background-image: url("{% static 'img/fondo1.png' %}");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            min-height: 100vh;
+            padding-top: 60px; /* Para dejar espacio para el navbar */
+        }
+        .profile-container {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .withdraw-history-container {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .navbar-links {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .navbar-links a {
+            margin: 0 10px;
+            text-decoration: none;
+            color: black;
+            padding: 10px 20px; /* Espaciado interno */
+            border-radius: 5px; /* Bordes redondeados */
+            transition: background-color 0.3s; /* Transición suave */
+        }
+
+
+        .gold-box {
+            margin-top: 20px;
+            display: inline-block;
+            padding: 5px 10px;
+            background-color: #ffc107; /* Color de fondo de la caja */
+            border-radius: 5px; /* Bordes redondeados */
+            cursor: default; /* Evita que sea clickeable */
+        }
+        .gold-box img {
+            vertical-align: middle; /* Alinea verticalmente el icono con el texto */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <a href="https://bylotuz.org/store/">
+                    <img src="{% static 'img/buy.png' %}" alt="buy" style="height: 130px; margin-top: -58px; margin-left: 24px;">
+                </a>
+            </div>
+            <div class="col">
+                <a href="/inventario/">
+                    <img src="{% static 'img/inventario.png' %}" alt="Inventario" style="height: 70px; margin-left: -32px;">
+                </a>
+            </div>
+            <div class="col">
+                <a href="/perfil">
+                    <img src="{% static 'img/perfil.png' %}" alt="Perfil" style="height: 70px; margin-left: -28px;">
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <a href="/home/">
+                    <img src="{% static 'img/shop.png' %}" alt="Shop" style="height: 70px; margin-left: -35px;">
+                </a>
+            </div>
+            <div class="col">
+                <a href="https://bylotuz.gitbook.io/medieval">
+                    <img src="{% static 'img/wiki.png' %}" alt="wiki" style="height: 70px;">
+                </a>
+            </div>
+            <div class="col">
+                <a href="/logout/">
+                    <img src="{% static 'img/salir.png' %}" alt="Salir" style="height: 70px;">
+                </a>
+            </div>
+            <div class="col">
+                <a href="/ranking/">
+                    <img src="{% static 'img/ranking.png' %}" alt="Salir" style="height: 70px;">
+                </a>
+            </div>
+        </div>
+        <div class="row" style="margin-top: 10px;">
+            <div class="col text-center">
+                <div class="gold-box">
+                    <img src="{% static 'img/gold-icon.png' %}" alt="Gold Icon" style="height: 20px; margin-right: 5px; ">
+                    <span><b>{{ user_info.gold }}</b> Gold</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+
+    <div class="container">
+        <div class="d-flex justify-content-center"> <!-- Contenedor flex -->
+            <div class="profile-left" style="display: flex; flex-direction: column;"> <!-- Div izquierdo -->
+                <div style="position: relative;">
+                    <img src="{% static 'img/mensaje.png' %}" alt="Left Image" style="height: 150px;">
+                    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 24px; color: white;">
+                       
+                    </div>
+                </div>
+                <div style="position: relative;">
+                    <img src="{% static 'img/life.png' %}" alt="Left Image" style="height: 150px;">
+                    <div style="position: absolute; top: 37%; left: 50%; transform: translateX(-62%); font-size: 28px; color: black;">
+                        {{ life.value}}%
+                    </div>
+                    
+                </div>
+            </div>
+            
+            
+            
+            
+            
+
+            <div class="profile-container"> <!-- Div central -->
+                <h2 class="text-center">User profile</h2>
+                <div class="text-center">
+                    <p><strong>Nickname:</strong> {{ user_info.user.username }}</p>
+                    <p><strong>E-mail:</strong> {{ user_info.user.email }}</p>
+                    <p><strong>Gold:</strong> {{ user_info.gold }}</p>
+                    <p><strong>Wallet address:</p>
+                    <p></strong> {{ user_info.numero_wallet }}</p>
+                </div>
+                <form id="withdrawForm" action="/perfil/" method="post" class="text-center">
+                    {% csrf_token %}
+                    <div class="form-group" class="text-center">
+                        <label for="amount" class="text-center">Amount to withdraw</label>
+                        <input type="number" class="form-control" id="amount" name="amount" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Withdraw</button>
+                </form>
+            </div>
+            <div class="profile-right"> <!-- Div derecho -->
+                <img src="{% static 'img/caja.png' %}" alt="Right Image"style="height: 150px;">
+            </div>
+        </div>
+    </div>
+    
+
+    <div class="withdraw-history-container">
+        <h2 class="text-center">Withdrawal history</h2>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Amount</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                    <th>Tower A</th>
+                    <th>Tower B</th>
+                    <th>Fee</th> <!-- Nueva columna para mostrar el valor de life -->
+                </tr>
+            </thead>
+            <tbody>
+                {% for withdraw in withdraw_history reversed %}
+                <tr>
+                    <td>{{ withdraw.amount }}</td>
+                    <td>{{ withdraw.fecha_retiro }}</td>
+                    <td>{{ withdraw.get_status_display }}</td>
+                    <td>{% if withdraw.tower_A %}Yes{% else %}No{% endif %}</td>
+                    <td>{% if withdraw.tower_B %}Yes{% else %}No{% endif %}</td>
+                    <td>{{ withdraw.life }}</td> <!-- Agrega la columna para mostrar life -->
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    
+    
+
+<!-- Bootstrap JS and jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

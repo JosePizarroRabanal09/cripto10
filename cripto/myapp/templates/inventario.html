@@ -1,0 +1,320 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventario</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="icon" type="image/png" href="{% static 'img/icon.jpeg' %}"> <!-- Reemplaza 'favicon.png' con la ruta de tu favicon -->
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Archivo:wght@500&family=Inter:wght@400;600;800&family=Silkscreen:wght@400;700&display=swap');
+        
+        @font-face {
+            font-family: 'Silkscreen';
+            font-style: normal;
+            font-weight: 400;
+            src: url('https://fonts.gstatic.com/s/silkscreen/v9/buw-ANDf3bD7se2TKdG6N8LFug.ttf') format('truetype');
+        }
+        body {
+            font-family: 'Silkscreen', sans-serif; /* Utiliza la fuente Silkscreen para todo el cuerpo del documento */
+
+            background-image: url("{% static 'img/fondo1.png' %}");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            min-height: 100vh;
+            padding-top: 60px; /* Para dejar espacio para el navbar */
+        }
+        .title-background {
+            background-color: #343a40; /* Fondo del título */
+            color: white; /* Color del texto del título */
+            padding: 10px 20px; /* Espaciado del título */
+            border-top-left-radius: 20px; /* Borde superior izquierdo ovalado */
+            border-top-right-radius: 20px; /* Borde superior derecho ovalado */
+            margin-bottom: 20px;
+        }
+        .gold-box {
+            margin-top: 20px;
+            display: inline-block;
+            padding: 5px 10px;
+            background-color: #ffc107; /* Color de fondo de la caja */
+            border-radius: 5px; /* Bordes redondeados */
+            cursor: default; /* Evita que sea clickeable */
+        }
+        .gold-box img {
+            vertical-align: middle; /* Alinea verticalmente el icono con el texto */
+        }
+        .card {
+            background-color: rgba(255, 255, 255, 0.8); /* Fondo del card */
+            border-radius: 20px; /* Bordes redondeados */
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Sombra */
+        }
+        .navbar-links {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .navbar-links a {
+            margin: 0 10px;
+            text-decoration: none;
+            color: black;
+            padding: 10px 20px; /* Espaciado interno */
+            border-radius: 5px; /* Bordes redondeados */
+            transition: background-color 0.3s; /* Transición suave */
+        }
+
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <a href="https://bylotuz.org/store/">
+                    <img src="{% static 'img/buy.png' %}" alt="buy" style="height: 130px; margin-top: -58px; margin-left: 24px;">
+                </a>
+            </div>
+            <div class="col">
+                <a href="/inventario/">
+                    <img src="{% static 'img/inventario.png' %}" alt="Inventario" style="height: 70px; margin-left: -32px;">
+                </a>
+            </div>
+            <div class="col">
+                <a href="/perfil">
+                    <img src="{% static 'img/perfil.png' %}" alt="Perfil" style="height: 70px; margin-left: -28px;">
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <a href="/home/">
+                    <img src="{% static 'img/shop.png' %}" alt="Shop" style="height: 70px; margin-left: -35px;">
+                </a>
+            </div>
+            <div class="col">
+                <a href="https://bylotuz.gitbook.io/medieval">
+                    <img src="{% static 'img/wiki.png' %}" alt="wiki" style="height: 70px;">
+                </a>
+            </div>
+            <div class="col">
+                <a href="/logout/">
+                    <img src="{% static 'img/salir.png' %}" alt="Salir" style="height: 70px;">
+                </a>
+            </div>
+            <div class="col">
+                <a href="/ranking/">
+                    <img src="{% static 'img/ranking.png' %}" alt="Salir" style="height: 70px;">
+                </a>
+            </div>
+        </div>
+        <div class="row" style="margin-top: 10px;">
+            <div class="col text-center">
+                <div class="gold-box">
+                    <img src="{% static 'img/gold-icon.png' %}" alt="Gold Icon" style="height: 20px; margin-right: 5px; ">
+                    <span><b>{{ user_info.gold }}</b> Gold</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+    
+
+<div class="container">
+    {% if messages %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {% for message in messages %}
+        <strong>{{ message }}</strong>
+        {% endfor %}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {% endif %}
+
+
+    <div class="card">
+        <div class="title-background">
+            <h2 class="text-center"><b>Chest</b></h2>
+        </div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Date of Purchase</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for compra_cofre in compras_cofre %} 
+                {% if not compra_cofre.cofre_abierto %}
+                <tr>
+                    <td>{{ compra_cofre.cofre.nombre }}</td>
+                    <td>{{ compra_cofre.fecha_compra }}</td>
+                    <td><img src="{{ compra_cofre.cofre.imagen.url }}" alt="" class="" style="height: 50px;"></td>
+                    <td>
+                        <form action="/abrircofre/{{compra_cofre.id}}/" method="post">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-success btn-sm" onclick="playAudio1('{{ compra_cofre.cofre.sonido.url }}', this.form)">
+                                <i class="fas fa-play"></i> Open
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+                {% endif %}
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    
+    
+    
+
+
+    <div class="card">
+        <div class="title-background">
+            <h2 class="text-center"><b>Towers</b></h2>
+        </div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Effect</th>
+                    <th>Cooldown (hours)</th>
+                    <th>Minimum Production</th>
+                    <th>Maximum Production</th>
+                    <th>Next Enable Time</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for registro_compra in registro_compras reversed %}
+                <tr>
+                    <td>{{ registro_compra.tower.name }}</td>
+                    <td>{{ registro_compra.tower.efecto }}</td>
+                    <td>{{ registro_compra.tower.cooldown }}</td>
+                    <td>{{ registro_compra.tower.produccion_min }}</td>
+                    <td>{{ registro_compra.tower.produccion_max }}</td>
+                    {% if registro_compra.tower.tipo != "A" and registro_compra.tower.tipo != "B" %}
+                    <td>{{ registro_compra.hora_habilitacion }}</td>
+                    {% else %}
+                    <td></td>
+                    {% endif %}
+                    <td><img src="{{ registro_compra.tower.imagen.url }}" alt="{{ registro_compra.tower.name }}" class="tower-img" style="height: 50px;"></td>
+    
+                    <td>
+                        {% if registro_compra.tower.tipo == "Village" or registro_compra.tower.tipo == "War" %}
+
+                        <form  action="/farmearTower/{{ registro_compra.id }}/" method="post">
+                            {% csrf_token %}
+                            {% if registro_compra.habilitado_farmear %}
+                                <button type="submit" class="btn btn-primary btn-sm" >
+                                    <i class="fas fa-play"></i> Play
+                                </button>
+                            {% else %}
+                                <button type="button" class="btn btn-danger btn-sm" disabled>
+                                    <i class="fas fa-times"></i> Not Available
+                                </button>
+                            {% endif %}
+                            </form>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    
+    
+
+
+
+    <div class="card">
+        <div class="title-background">
+            <h2 class="text-center"><b>Camp</b></h2>
+        </div>
+
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th class="text-center">Minimum Production</th>
+                    <th class="text-center">Maximum Production</th>
+                    <th> Resting, next production on</th> <!-- Cambio de nombre de la columna -->
+
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for compra in compras_usuario reversed  %}
+                <tr>
+
+                    <td>{{ compra.guerrero.nombre }}</td>
+                    <td class="text-center">{{ compra.guerrero.produccion_min }}</td>
+                    <td class="text-center">{{ compra.guerrero.produccion_max }}</td>
+                    <td>{{ compra.hora_habilitacion }}</td> <!-- Mostrar la hora de habilitación -->
+                    <td><img src="{{ compra.guerrero.imagen.url }}" alt="{{ compra.guerrero.nombre }}" class="guerrero-img" style="height: 50px;"></td> <!-- Mostrar la imagen del guerrero con altura de 50px -->
+
+                    <td>
+                        <form id="farmearForm_{{ compra.id }}" action="/farmear/{{ compra.id }}/" method="post">
+                            {% csrf_token %}
+                            {% if compra.habilitado_farmear %}
+                                <button type="submit" class="btn btn-success btn-sm" onclick="playAudio('{{ compra.guerrero.sonido.url }}', this.form)">
+                                    <i class="fas fa-play"></i> Play
+                                </button>
+                            {% else %}
+                                <button type="button" class="btn btn-danger btn-sm" disabled>
+                                    <i class="fas fa-times"></i> Not Available
+                                </button>
+                            {% endif %}
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+            
+            
+            
+        </table>
+
+        
+    </div>
+</div>
+<script>
+    function playAudio(soundUrl, form) {
+        var audioPlayer = new Audio(soundUrl);
+        audioPlayer.play();
+        // Prevenir el comportamiento predeterminado del botón
+        event.preventDefault();
+        // Añadir un retraso de 4 segundos antes de enviar el formulario
+        setTimeout(function() {
+            form.submit();
+        }, 4000); // 4000 milisegundos = 4 segundos
+    }
+
+    function playAudio1(soundUrl, form) {
+        var audioPlayer = new Audio(soundUrl);
+        audioPlayer.play();
+        // Prevenir el comportamiento predeterminado del botón
+        event.preventDefault();
+        // Añadir un retraso de 4 segundos antes de enviar el formulario
+        setTimeout(function() {
+            form.submit();
+        }, 1200); // 4000 milisegundos = 4 segundos
+    }
+    </script>
+
+
+<!-- Bootstrap JS and jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>
